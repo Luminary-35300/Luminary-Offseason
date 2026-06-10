@@ -8,7 +8,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.teleop.gamepad.GamepadMapping;
 
 public class Drivetrain {
-    // HARDWARE (I (Ishaan) added Final when changing from pedro)
     private final DcMotorEx leftFront;
     private final DcMotorEx rightFront;
     private final DcMotorEx leftBack;
@@ -40,7 +39,6 @@ public class Drivetrain {
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
         rightBack.setDirection(DcMotorEx.Direction.REVERSE);
         rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-
 
 
         this.imu = imu;

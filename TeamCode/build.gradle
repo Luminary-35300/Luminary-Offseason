@@ -64,11 +64,6 @@ dependencies {
     implementation project(':FtcRobotController')
 
     //NextFTC
-//    implementation 'dev.nextftc:ftc:1.0.1'
-//    implementation 'dev.nextftc:hardware:1.1.0'
-//    implementation 'dev.nextftc:control:1.0.0'
-//    implementation 'dev.nextftc:bindings:1.0.1'
-//    implementation 'dev.nextftc.extensions:pedro:1.0.0'
     implementation 'dev.nextftc:ftc:1.0.1'
     implementation 'dev.nextftc:hardware:1.0.1'
     implementation 'dev.nextftc:control:1.0.0'
@@ -86,7 +81,7 @@ dependencies {
     implementation 'org.ftclib.ftclib:core:2.1.1' // core
 
     //Pedro
-    implementation("com.pedropathing:ftc:2.0.6") {
+    implementation("com.pedropathing:ftc:2.1.2") {
         exclude group: "com.acmerobotics.dashboard"
     }
 
