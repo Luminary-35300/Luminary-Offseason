@@ -117,7 +117,6 @@ public class kf_TeleOpTest extends OpMode {
     }
 
     private Pose getRobotPoseFromCamera() {
-        // Feed the current follower heading to Limelight for more accurate BotPose calculations
         limelight.updateRobotOrientation(Math.toDegrees(follower.getHeading()));
         LLResult result = limelight.getLatestResult();
 
