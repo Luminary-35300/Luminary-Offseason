@@ -25,6 +25,9 @@ public class kf_TeleOpTest extends OpMode {
     public static double Q = 0.1;
     public static double R = 0.4;
 
+    // Pipeline index for AprilTags (configured in Limelight UI for 36h11 family)
+    public static int APRILTAG_PIPELINE = 0;
+
     private Limelight3A limelight;
     private Follower follower;
 
@@ -36,6 +39,9 @@ public class kf_TeleOpTest extends OpMode {
     @Override
     public void init() {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        
+        // Switch to the AprilTag pipeline for the Into the Deep season (36h11 family)
+        limelight.pipelineSwitch(APRILTAG_PIPELINE);
 
         follower = Constants.createFollower(hardwareMap);
         follower.setStartingPose(new Pose(0, 0, 0));
@@ -117,11 +123,15 @@ public class kf_TeleOpTest extends OpMode {
     }
 
     private Pose getRobotPoseFromCamera() {
+        // Feed the current follower heading to Limelight for more accurate internal BotPose calculations
         limelight.updateRobotOrientation(Math.toDegrees(follower.getHeading()));
         LLResult result = limelight.getLatestResult();
 
+        // Check if the result is valid and contains a botpose (field-space estimate)
         if (result == null || !result.isValid() || result.getBotpose() == null) return null;
 
+        // Limelight's getBotpose() uses the configured field map for Into the Deep
+        // to return the robot's position relative to the center of the field.
         Pose3D botpose = result.getBotpose();
 
         // Convert Limelight's meters to inches and transform to Pedro Pathing coordinates
